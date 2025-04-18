@@ -47,6 +47,20 @@ class PyWinAutoToolkit(tk.Tk):
         self.geometry("900x700")
         self.minsize(800, 600)
 
+        # Initialize data storage first to avoid reference errors
+        self.current_windows = []
+        self.current_controls = []
+        self.selected_window = None
+        self.selected_control = None
+
+        # Initialize status bar
+        self.status_var = tk.StringVar()
+        self.status_var.set("Ready")
+        self.status_bar = ttk.Label(
+            self, textvariable=self.status_var, relief=tk.SUNKEN, anchor=tk.W
+        )
+        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
+
         # Initialize logger
         self.logger = AppLogger(log_file="pywinauto_toolkit.log")
         self.logger.info(LogCategory.SYSTEM, "PyWinAuto Toolkit started")
@@ -83,20 +97,6 @@ class PyWinAutoToolkit(tk.Tk):
         self.init_code_tab()
         self.init_screenshot_tab()
         self.init_log_tab()
-
-        # Status bar
-        self.status_var = tk.StringVar()
-        self.status_var.set("Ready")
-        self.status_bar = ttk.Label(
-            self, textvariable=self.status_var, relief=tk.SUNKEN, anchor=tk.W
-        )
-        self.status_bar.pack(side=tk.BOTTOM, fill=tk.X)
-
-        # Data storage
-        self.current_windows = []
-        self.current_controls = []
-        self.selected_window = None
-        self.selected_control = None
 
         # Bind close event
         self.protocol("WM_DELETE_WINDOW", self.on_close)

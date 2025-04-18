@@ -80,14 +80,16 @@ def main():
 
     # Launch the toolkit
     try:
+        # Import the main module
         import pywinauto_toolkit
 
-        app = pywinauto_toolkit.PyWinAutoToolkit()
-        app.mainloop()
+        # Use the main function which properly initializes the application
+        pywinauto_toolkit.main()
     except Exception as e:
         root = tk.Tk()
         root.withdraw()
         messagebox.showerror("Error", f"Failed to launch the toolkit: {str(e)}")
+        print(f"Error details: {str(e)}")
 
 
 if __name__ == "__main__":
