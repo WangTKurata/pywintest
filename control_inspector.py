@@ -28,7 +28,6 @@ SOFTWARE.
 """
 
 import argparse
-import sys
 import time
 
 from pywinauto import Application, Desktop

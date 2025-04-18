@@ -24,7 +24,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-import json
 import os
 import subprocess
 import sys
@@ -34,12 +33,11 @@ from threading import Thread
 from tkinter import messagebox, scrolledtext, ttk
 
 import psutil
-import pywinauto
 from PIL import ImageGrab, ImageTk
 from pywinauto import Application, Desktop
 
 # Import the application logger
-from app_logger import AppLogger, LogCategory, LogLevel, LogViewer
+from app_logger import AppLogger, LogCategory, LogLevel
 
 
 class PyWinAutoToolkit(tk.Tk):
@@ -1267,7 +1265,6 @@ for window in windows:
 
     def run_code(self):
         import tempfile
-        from tkinter import filedialog
 
         # Get code
         code = self.code_text.get(1.0, tk.END)
@@ -1279,7 +1276,7 @@ for window in windows:
 
         # Run code
         try:
-            self.status_var.set(f"Running code...")
+            self.status_var.set("Running code...")
 
             # Create new window for output
             output_window = tk.Toplevel(self)
@@ -1320,7 +1317,7 @@ for window in windows:
 
                 except Exception as e:
                     output_text.insert(tk.END, f"Error running code: {e}")
-                    self.status_var.set(f"Error running code")
+                    self.status_var.set("Error running code")
 
                 finally:
                     # Delete temporary file

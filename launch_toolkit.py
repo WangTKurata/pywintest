@@ -28,7 +28,6 @@ SOFTWARE.
 """
 
 import importlib.util
-import os
 import subprocess
 import sys
 import tkinter as tk
